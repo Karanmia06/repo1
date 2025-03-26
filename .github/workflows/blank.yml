@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract Archive and Install
         run: |
@@ -18,7 +20,7 @@ jobs:
 
       - name: Start Node App with Timeout
         run: |
-          timeout 120s node main.js || echo "Job timed out"
+          timeout 120s node main.js || echo "Done"
 
       - name: Commit and Push Changes
         run: |
@@ -26,5 +28,5 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo $(date) > last_run.txt
           git add last_run.txt
-          git commit -m "Auto-restart workflow: $(date)"
+          git commit -m "Restarting at: $(date)"
           git push
