@@ -1,4 +1,4 @@
-name: CI
+name: NRunner
 
 on:
   push:
@@ -19,15 +19,15 @@ jobs:
 
       - name: Start Node App with Timeout
         run: |
-          timeout 1860s node main.js || echo "Done"
+          timeout 1860s node main.js || echo "Running Completed"
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          echo $(date) > last_run.txt
-          git add last_run.txt
-          git commit -m "Restarting at: $(date)"
+          echo $(date) > last_runtime.txt
+          git add last_runtime.txt
+          git commit -m "Restarting From: $(date)"
 
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/Karanmia06/repo1.git
           git push origin main
