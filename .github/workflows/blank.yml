@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Extract Archive and Install
         run: |
@@ -28,4 +28,6 @@ jobs:
           echo $(date) > last_run.txt
           git add last_run.txt
           git commit -m "Restarting at: $(date)"
-          git push --force origin main
+
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/Karanmia06/repo1.git
+          git push origin main
