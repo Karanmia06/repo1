@@ -19,7 +19,7 @@ jobs:
 
       - name: Start Node App with Timeout
         run: |
-          timeout 120s node main.js || echo "Done"
+          timeout 1860s node main.js || echo "Done"
 
       - name: Commit and Push Changes
         run: |
