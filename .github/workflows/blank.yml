@@ -4,10 +4,6 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
-  workflow_run:
-    workflows: [ "CI" ]
-    types:
-      - completed
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,4 +28,4 @@ jobs:
           echo $(date) > last_run.txt
           git add last_run.txt
           git commit -m "Restarting at: $(date)"
-          git push
+          git push --force origin main
