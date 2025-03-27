@@ -3,6 +3,9 @@ name: NRunner 1
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "last_run.txt"
+      - "last_runtime_1.txt"
 jobs:
   build:
     runs-on: ubuntu-latest
