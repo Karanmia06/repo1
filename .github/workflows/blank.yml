@@ -24,12 +24,12 @@ jobs:
       - name: Commit and Push Changes
         run: |
           git pull
-          
+
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo $(date) > last_runtime.txt
           git add last_runtime.txt
           git commit -m "Restarting From: $(date)"
 
-          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/Karanmia06/repo1.git
+          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com//${{ github.repository }}.git
           git push origin main
