@@ -1,11 +1,14 @@
 name: NRunner 1
-
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "last_run.txt"
-      - "last_runtime_1.txt"
+      - "run.txt"
+      - $last_runtime
+
+env:
+  last_runtime: last_runtime_1.txt
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,8 +30,8 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          echo $(date) > last_runtime_1.txt
-          git add last_runtime_1.txt
+          echo $(date) > $last_runtime
+          git add $last_runtime
           git commit -m "Restarting From: $(date)"
 
           git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com//${{ github.repository }}.git
